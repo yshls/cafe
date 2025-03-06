@@ -1,17 +1,12 @@
 window.onload = async () => {
-  // 브라우저를 새로고침하면 화면의 login이 풀려보이는 문제를 sessionstorage로 해결하기
   const email = sessionStorage.getItem('email');
   if (email) {
     document.getElementById('loginSpan').innerHTML = email+`<button id ="logout">logout</button>`;
   }
   // axios.defaults.withCredentials = true;
   console.log(axios);
-  let productList = await fetch('getAllProducts', {
-    method: 'GET',
-  });
+  let productList = await fetch('getAllProducts', {method: 'GET'});
   console.log(productList); // text
-  // await는 async 블락 내에서만 쓸 수 있는 키워드
-
   productList = await productList.json();
   console.log(productList); // []
 
@@ -27,7 +22,10 @@ window.onload = async () => {
               </div>`;
   });
   document.getElementById('productListDiv').innerHTML = productListDiv;
-};
+}
+
+
+
 
 document.getElementById('signupBtn').addEventListener('click', async () => {
   const nickname = document.getElementById('nickname').value;
@@ -84,7 +82,7 @@ document.getElementById('loginBtn').addEventListener('click', async () => {
 
 document.getElementById('productListDiv').addEventListener('click', (event) => {
   if (event.target.id == 'addCart') {
-    axios.post('addCart');
+    axios.post('addCart', {});
   }
 });
 

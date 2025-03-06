@@ -13,6 +13,6 @@ public class MyConfig implements WebMvcConfigurer{
 //		.allowedOrigins("http://172.30.1.46:8080")
 //		.allowedMethods("*")
 //		.allowedHeaders("*")
-//		.allowCredentials(true); // 쿠키, 세션 정보도 허용
+//		.allowCredentials(true); //쿠키, 세션 정보도 허용
 //	}
 }

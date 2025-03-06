@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpSession;
 
 
 @RestController
-//@CrossOrigin("http://172.30.1.46:8080")
+@CrossOrigin("http://172.30.1.46:8080")
 public class CartController {
 	@PostMapping("addCart")
 	public String addCart(HttpServletRequest request) {

@@ -13,15 +13,41 @@ import org.springframework.web.bind.annotation.RestController;
 import com.shop.cafe.dto.Member;
 import com.shop.cafe.service.MemberService;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+
 @RestController
-@CrossOrigin("http://127.0.0.1:5500/")
+//@CrossOrigin("http://172.30.1.46:8080")
 public class MemberController {
 	
 	@Autowired
 	MemberService memberService;
 	
+	//GM 방식 말고 PM방식으로 바꿔야 노출 X
+	@PostMapping("login")
+	public Map<String, String> login(@RequestBody Member m, HttpServletRequest request) {
+		System.out.println(m);
+		Map<String,String> responseData=new HashMap();
+		try {
+			m = memberService.login(m);
+			if(m!= null) {
+				// login ok
+				HttpSession session = request.getSession();
+				System.out.println(session.getId());
+				session.setAttribute("member", m);
+				responseData.put("msg","ok");
+			} else { // login fail
+				responseData.put("msg","다시 로그인해주세요");
+			}
+		} catch (Exception e) {
+			// login error
+			e.printStackTrace();
+			responseData.put("msg","다시 로그인해주세요");
+		}
+		return responseData;
+	}
+	
 	@PostMapping("insertMember")
-	@CrossOrigin("http://172.30.1.46:5500/")
 	public Map<String, String> insertMember(@RequestBody  Member m) {
 		Map<String,String> responseData=new HashMap();
 		try {

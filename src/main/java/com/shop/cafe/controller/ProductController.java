@@ -11,7 +11,7 @@ import com.shop.cafe.dto.Product;
 import com.shop.cafe.service.ProductService;
 
 @RestController
-@CrossOrigin("http://172.30.1.46:5500")
+//@CrossOrigin("http://172.30.1.46:8080")
 public class ProductController {
 	
 	@Autowired
